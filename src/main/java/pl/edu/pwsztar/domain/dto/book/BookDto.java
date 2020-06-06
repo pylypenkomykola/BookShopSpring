@@ -1,4 +1,4 @@
-package pl.edu.pwsztar.domain.dto;
+package pl.edu.pwsztar.domain.dto.book;
 
 import java.io.Serializable;
 

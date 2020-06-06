@@ -1,4 +1,4 @@
-package pl.edu.pwsztar.domain.dto;
+package pl.edu.pwsztar.domain.dto.client;
 
 
 
@@ -64,6 +64,9 @@ public class ClientDto implements Serializable {
         private String lastName;
         private String address;
         private String phoneNumber;
+
+        public Builder() {
+        }
 
         public Builder(ClientDto copy) {
             this.email = copy.getEmail();
