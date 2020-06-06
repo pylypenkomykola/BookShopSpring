@@ -1,11 +1,10 @@
-package pl.pwsztar.edu.token;
+package pl.pwsztar.edu.domain.token;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import pl.edu.pwsztar.domain.entity.Client;
 import pl.pwsztar.edu.domain.entity.Client;
 
 import java.io.Serializable;
@@ -49,7 +48,7 @@ public class JwtTokenUtil implements Serializable {
 
     public String generateToken(Client client) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userId",client.getClientId());
+//        claims.put("userId",client.getClientId());
         return doGenerateToken(claims);
     }
 
