@@ -1,4 +1,4 @@
 package pl.pwsztar.edu.domain.repository;
 
-public interface ClientRepository {
+public interface TokenRepository {
 }

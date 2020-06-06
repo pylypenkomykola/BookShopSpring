@@ -1,4 +1,4 @@
 package pl.pwsztar.edu.domain.dto;
 
-public class ClientDto {
+public class ClientBookDto {
 }

@@ -1,4 +1,4 @@
 package pl.pwsztar.edu.domain.entity;
 
-public class Client {
+public class ShoppingCart {
 }
