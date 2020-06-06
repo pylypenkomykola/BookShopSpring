@@ -91,7 +91,8 @@ public class Order implements Serializable {
             return this;
         }
 
-        private Order build(){
+
+        public Order build(){
             return new Order(this);
         }
     }

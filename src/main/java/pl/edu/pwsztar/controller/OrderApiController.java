@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderApiController {
 
     @CrossOrigin
-    @PostMapping(value = "/complete-order/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/{userId}/complete-order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Void> addBookToCart(@PathVariable Long userId){
 
         return new ResponseEntity<>(HttpStatus.OK);
