@@ -15,7 +15,7 @@ public class Book implements Serializable {
     @Column(name = "picture")
     private byte[] picture;
 
-    @Column(name = "tiitle")
+    @Column(name = "title")
     private String title;
 
     @Column(name = "description")

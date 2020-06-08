@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="tokens")
+@Table(name="tokens", schema="book_shop")
 public class Token implements Serializable{
     @Id
     @Column(name="token_id")

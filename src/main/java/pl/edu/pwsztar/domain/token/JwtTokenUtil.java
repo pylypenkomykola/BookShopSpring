@@ -22,7 +22,7 @@ public class JwtTokenUtil implements Serializable {
 
     private static final String SECRET_KEY = "secret";
 
-    private static final String[] admins = {"mr.gigami@gmail.com","speed008@o2.pl"};
+    private static final String[] admins = {"mr.gigami@gmail.com", "speed08@o2.pl"};
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
