@@ -65,6 +65,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void clearClientCart(Long userId) {
-        shoppingCartRepository.clearClientCarById(userId);
+        shoppingCartRepository.clearClientCartById(userId);
     }
 }

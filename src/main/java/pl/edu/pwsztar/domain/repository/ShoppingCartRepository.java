@@ -29,5 +29,5 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Shop
     @Transactional
     @Modifying
     @Query("DELETE FROM ShoppingCart cart WHERE cart.client.userId = ?1")
-    void clearClientCarById(Long userId);
+    void clearClientCartById(Long userId);
 }

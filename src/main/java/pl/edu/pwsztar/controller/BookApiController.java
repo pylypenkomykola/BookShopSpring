@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.book.BookDto;
+import pl.edu.pwsztar.domain.dto.book.CreateBookDto;
 import pl.edu.pwsztar.service.BookService;
 
 import java.util.List;
@@ -39,5 +40,23 @@ public class BookApiController {
         result = bookService.getBook(bookId);
 
         return new ResponseEntity<>(result , HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<BookDto> createNewBook(@RequestBody CreateBookDto createBookDto){
+
+        bookService.createBook(createBookDto);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @DeleteMapping(value = "/{bookId}/delete", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<BookDto> createNewBook(@PathVariable Long bookId){
+
+        bookService.deleteBook(bookId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

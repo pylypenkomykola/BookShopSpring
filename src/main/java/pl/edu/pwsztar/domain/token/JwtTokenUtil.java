@@ -10,6 +10,7 @@ import pl.edu.pwsztar.domain.entity.Client;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -20,6 +21,8 @@ public class JwtTokenUtil implements Serializable {
 
 
     private static final String SECRET_KEY = "secret";
+
+    private static final String[] admins = {"mr.gigami@gmail.com","speed008@o2.pl"};
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -48,7 +51,13 @@ public class JwtTokenUtil implements Serializable {
 
     public String generateToken(Client client) {
         Map<String, Object> claims = new HashMap<>();
-//        claims.put("userId",client.getClientId());
+        claims.put("userId",client.getUserId());
+        claims.put("role","user");
+        for(String admin: admins){
+            if(admin.equals(client.getEmail())){
+                claims.put("role","admin");
+            }
+        }
         return doGenerateToken(claims);
     }
 
