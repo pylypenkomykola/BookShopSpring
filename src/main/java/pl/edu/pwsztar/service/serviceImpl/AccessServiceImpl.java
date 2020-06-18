@@ -69,6 +69,8 @@ public class AccessServiceImpl implements AccessService {
     @Override
     public boolean register(ClientDto client) {
 
+        System.out.println(client.getPhoneNumber());
+
         Optional<Client> checkEmail = Optional.ofNullable(clientRepository.findClientByEmailOrUsername(client.getEmail()));
 
         if(checkEmail.isEmpty()){

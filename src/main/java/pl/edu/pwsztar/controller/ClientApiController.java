@@ -31,7 +31,7 @@ public class ClientApiController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/edit/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Boolean> modifyData(@PathVariable Long userId, @RequestBody ClientModifyDto clientModifyDto) {
         boolean result = false;
 
