@@ -5,11 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.domain.dto.client.ClientDto;
+import pl.edu.pwsztar.domain.dto.client.ClientModifyDto;
 import pl.edu.pwsztar.service.ClientService;
 
 @Controller
@@ -28,6 +26,16 @@ public class ClientApiController {
         ClientDto result = null;
 
         result = clientService.getClientInfo(userId);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Boolean> modifyData(@PathVariable Long userId, @RequestBody ClientModifyDto clientModifyDto) {
+        boolean result = false;
+
+        result = clientService.completeModify(userId, clientModifyDto);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

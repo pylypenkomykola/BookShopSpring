@@ -3,6 +3,7 @@ package pl.edu.pwsztar.service.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pwsztar.domain.dto.client.ClientDto;
+import pl.edu.pwsztar.domain.dto.client.ClientModifyDto;
 import pl.edu.pwsztar.domain.entity.Client;
 import pl.edu.pwsztar.domain.mapper.client.ClientMapper;
 import pl.edu.pwsztar.domain.repository.ClientRepository;
@@ -79,6 +80,12 @@ public class ClientServiceImpl implements ClientService {
         try {
             String encryptedPassword = toHexString(getSHA(password));
 
+            if(encryptedPassword.equals(client.getPassword())) {
+                return false;
+            }
+
+            clientRepository.changeClientPassword(userId, encryptedPassword);
+            return true;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -86,22 +93,48 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void modifyClientFirstName(Long userId, String firstName) {
-
+    public boolean modifyClientFirstName(Long userId, String firstName) {
+        clientRepository.changeClientFirstName(userId, firstName);
+        return true;
     }
 
     @Override
-    public void modifyClientLastName(Long userId, String lastName) {
-
+    public boolean modifyClientLastName(Long userId, String lastName) {
+        clientRepository.changeClientLastName(userId, lastName);
+        return true;
     }
 
     @Override
-    public void modifyClientAddress(Long userId, String address) {
-
+    public boolean modifyClientAddress(Long userId, String address) {
+        clientRepository.changeClientAddress(userId, address);
+        return true;
     }
 
     @Override
-    public void modifyClientPhone(Long userId, String phoneNumber) {
+    public boolean modifyClientPhone(Long userId, String phoneNumber) {
+        clientRepository.changeClientPhone(userId, phoneNumber);
+        return true;
+    }
 
+    @Override
+    public boolean completeModify(Long userId, ClientModifyDto clientModifyDto) {
+        switch (clientModifyDto.getUserInfo()) {
+            case USERNAME:
+                return modifyClientUsername(userId, clientModifyDto.getData());
+            case EMAIL:
+                return modifyClientEmail(userId, clientModifyDto.getData());
+            case PASSWORD:
+                return modifyClientPassword(userId, clientModifyDto.getData());
+            case FIRSTNAME:
+                return modifyClientFirstName(userId, clientModifyDto.getData());
+            case LASTNAME:
+                return modifyClientLastName(userId, clientModifyDto.getData());
+            case ADDRESS:
+                return modifyClientAddress(userId, clientModifyDto.getData());
+            case PHONENUMBER:
+                return modifyClientPhone(userId, clientModifyDto.getData());
+            default:
+                return false;
+        }
     }
 }
