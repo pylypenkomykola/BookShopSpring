@@ -24,6 +24,7 @@ public class AccessApiController {
     }
 
 
+
     @CrossOrigin
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Boolean> register(@RequestBody ClientDto client) {

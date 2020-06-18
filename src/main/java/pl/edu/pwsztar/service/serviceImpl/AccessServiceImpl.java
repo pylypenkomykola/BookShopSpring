@@ -69,7 +69,7 @@ public class AccessServiceImpl implements AccessService {
     @Override
     public boolean register(ClientDto client) {
 
-        Optional<Client> checkEmail = Optional.ofNullable(clientRepository.findClientByEmail(client.getEmail()));
+        Optional<Client> checkEmail = Optional.ofNullable(clientRepository.findClientByEmailOrUsername(client.getEmail()));
 
         if(checkEmail.isEmpty()){
             try {
@@ -91,7 +91,7 @@ public class AccessServiceImpl implements AccessService {
         AuthenticationResult result = null;
         String password = user.getPassword();
 
-        Optional<Client> checkEmail = Optional.ofNullable(clientRepository.findClientByEmail(user.getEmail()));
+        Optional<Client> checkEmail = Optional.ofNullable(clientRepository.findClientByEmailOrUsername(user.getEmail()));
 
         if(checkEmail.isPresent()){
             try {
