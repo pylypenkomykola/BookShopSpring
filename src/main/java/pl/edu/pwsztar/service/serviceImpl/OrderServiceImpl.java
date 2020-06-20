@@ -45,17 +45,18 @@ public class OrderServiceImpl implements OrderService {
         if(checkClientBooks.isPresent()){
             Client client = clientRepository.findClient(userId);
             List<BookInfoDto> clientBooks = checkClientBooks.get();
-            clientBooks.stream().map(book -> {
+
+            for(BookInfoDto book: clientBooks) {
                 orderRepository.save(
                         new Order.Builder()
-                .key(new OrderKey(userId, book.getBook().getBookId(), dataFormat.format(new Date())))
-                .client(client)
-                .book(book.getBook())
-                .date(dataFormat.format(new Date()))
-                .price(book.getBook().getPrice()*book.getBookNumber())
-                .build());
-                return null;
-            });
+                                .key(new OrderKey(userId, book.getBook().getBookId(), dataFormat.format(new Date())))
+                                .client(client)
+                                .book(book.getBook())
+                                .date(dataFormat.format(new Date()))
+                                .price(book.getBook().getPrice()*book.getBookNumber())
+                                .build());
+            }
+
             shoppingCartRepository.clearClientCartById(userId);
         }
     }
