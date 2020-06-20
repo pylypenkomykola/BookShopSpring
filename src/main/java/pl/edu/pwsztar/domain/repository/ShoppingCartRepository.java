@@ -18,7 +18,7 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Shop
     @Query("SELECT cart.book FROM ShoppingCart cart WHERE cart.client.userId = ?1")
     List<Book> findClientBooks(Long userId);
 
-    @Query("SELECT cart.book, cart.booksNumber FROM ShoppingCart cart WHERE cart.client.userId = ?1")
+    @Query("SELECT new pl.edu.pwsztar.domain.dto.book.BookInfoDto(cart.booksNumber, cart.book) FROM ShoppingCart cart WHERE cart.client.userId = ?1")
     List<BookInfoDto> findClientBooksInfo(Long userId);
 
     @Transactional

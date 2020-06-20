@@ -11,6 +11,11 @@ public class BookInfoDto implements Serializable {
     public BookInfoDto() {
     }
 
+    public BookInfoDto(Integer bookNumber, Book book) {
+        this.bookNumber = bookNumber;
+        this.book = book;
+    }
+
     private BookInfoDto(Builder builder) {
         this.bookNumber = builder.bookNumber;
         this.book = builder.book;
